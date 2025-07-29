@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task Manager</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="sidebar">
+  <button class="active" data-tab="checkin-today">Check-ins Hoje</button>
+  <button data-tab="prep-next-day">Preparar Dia Seguinte</button>
+  <button data-tab="notes">Notas</button>
+  <button data-tab="tax-calculator">Calculadora</button> <!-- nova aba -->
+</nav>
+
+  <main class="content">
+  <section id="checkin-today" class="tab-content active">
+    <h2>Check-ins Hoje</h2>
+
+    <form id="newHouseForm">
+      <input id="newHouseNameInput" type="text" placeholder="Nome da casa" required />
+      <button type="submit">Adicionar Casa</button>
+    </form>
+
+    <button onclick="clearCheckinsManually()">🔁 Limpar Check-ins</button>
+    <table id="checkin-table">
+      <thead>
+        <tr>
+          <th>Casa</th>
+          <th>Formulário</th>
+          <th>Caução</th>
+          <th>Taxa turística</th>
+          <th>Limpeza</th>
+          <th>Inspeção</th>
+          <th>Manutenção</th>
+          <th>Malas</th>
+        </tr>
+      </thead>
+      <tbody id="checkinTodayBody"></tbody>
+    </table>
+  </section>
+
+      <section id="tax-calculator" class="tab-content">
+    <h2>Calculadora de Taxa Turística</h2>
+    <label>Adultos: <input type="number" id="adults" min="0" value="2"></label><br>
+    <label>Noites: <input type="number" id="nights" min="1" value="3"></label><br>
+    <label>Localidade:
+      <select id="location">
+        <option value="loule">Loulé</option>
+        <option value="albufeira">Albufeira</option>
+      </select>
+    </label><br><br>
+    <button onclick="calcularTaxa()">Calcular Taxa</button>
+    <p id="resultado-taxa"></p>
+  </section>
+
+    <section id="prep-next-day" class="tab-content">
+      <h2>Preparar Dia Seguinte</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Check-ins</th>
+            <th>Check-outs</th>
+            <th>Trocas de Toalhas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="checkbox"></td>
+            <td><input type="checkbox"></td>
+            <td><input type="checkbox"></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="notes" class="tab-content">
+      <h2>Notas</h2>
+      <input id="notes-search" type="text" placeholder="Pesquisar notas...">
+      <textarea id="new-note-text" rows="4" placeholder="Escreve uma nota..."></textarea>
+      <button id="add-note-btn">Adicionar Nota</button>
+      <ul id="notes-list"></ul>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.all.min.js"></script>
+  <script src="scripts.js"></script>
+</body>
+</html>
